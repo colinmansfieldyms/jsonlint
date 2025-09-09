@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JSON Online Validator and Formatter - JSON Lint</title>
+<meta name="description" content="JSONLint is the free online validator, json formatter, and json beautifier tool for JSON, a lightweight data-interchange format. You can format json, validate json, with a quick and easy copy+paste.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/fold/foldgutter.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/dialog/dialog.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/matchesonscrollbar.min.css" />
+<style>
+.cm-error-highlight { background-color: rgba(255,0,0,0.2); }
+.CodeMirror { min-height:500px; resize:vertical; overflow:auto; font-family: monospace; font-size:12px; }
+body.valid svg.logo { color:#16a34a; }
+body.invalid svg.logo { color:#dc2626; }
+</style>
+</head>
+<body class="dark:text-slate-300">
+<div class="mt-8 max-w-8xl mx-auto sticky top-ad-container top-0 z-10 px-8 lg:px-10 flex">
+    <div id="bsa-zone_1570746984891-3_123456"></div>
+</div>
+<div class="flex-1 pt-6 max-w-8xl mx-auto dark:text-slate-300 px-8 lg:px-10">
+    <h1 class="text-base mb-4">To format and validate your JSON, just copy + paste it below:</h1>
+    <div class="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(932px,1fr),auto] xl:gap-12">
+        <div class="min-w-4xl">
+            <div id="jsonlint">
+                <div class="relative border border-slate-200 dark:border-slate-600">
+                    <textarea id="editor"></textarea>
+                    <button id="copyBtn" class="absolute top-2 right-6 p-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 dark:bg-slate-500 dark:border-slate-400" title="Copy to clipboard">
+                        <svg width="24" height="24" class="px-1 py-1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" stroke="currentColor" d="M448 0H224C188.7 0 160 28.65 160 64v224c0 35.35 28.65 64 64 64h224c35.35 0 64-28.65 64-64V64C512 28.65 483.3 0 448 0zM464 288c0 8.822-7.178 16-16 16H224C215.2 304 208 296.8 208 288V64c0-8.822 7.178-16 16-16h224c8.822 0 16 7.178 16 16V288zM304 448c0 8.822-7.178 16-16 16H64c-8.822 0-16-7.178-16-16V224c0-8.822 7.178-16 16-16h64V160H64C28.65 160 0 188.7 0 224v224c0 35.35 28.65 64 64 64h224c35.35 0 64-28.65 64-64v-64h-48V448z"/></svg>
+                    </button>
+                </div>
+                <div>
+                    <button id="validateBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-green-500 text-white bg-green-500 font-semibold hover:text-white hover:bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Validate JSON</button>
+                    <button id="clearBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-slate-200 font-semibold text-slate-500 hover:text-white hover:bg-slate-500 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-slate-800">Clear</button>
+                    <button id="formatBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-slate-200 font-semibold text-slate-500 hover:text-white hover:bg-slate-500 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-slate-800">Compress</button>
+                    <div id="result"></div>
+                </div>
+            </div>
+            <div class="block mt-10 mb-20">
+                <div class="custom-slant"></div>
+                <h2 class="mt-10">About the JSONLint Editor</h2>
+                <p>JSONLint is a validator and reformatter for JSON, a lightweight data-interchange format. Copy and paste, directly type, or input a URL in the editor above and let JSONLint tidy and validate your messy JSON code.</p>
+                <h2>What Is JSON?</h2>
+                <p>JSON (pronounced as Jason), stands for "JavaScript Object Notation," is a human-readable and compact solution to represent a complex data structure and facilitate data interchange between systems. It's a widespread data format with a diverse range of applications enabled by its simplicity and semblance to readable text. As such, it's used by most but not all systems for communicating data.</p>
+                <h2>Why Use JSON?</h2>
+                <p>There are several reasons why you should consider using JSON, the key reason being that JSON is independent of your system's programming language, despite being derived from JavaScript. Not only is JSON language-independent, but it also represents data that speaks common elements of many programming languages, effectively making it into a universal data representation understood by all systems.</p>
+                <p>Other reasons include:</p>
+                <ul>
+                    <li>Readability – JSON is human-readable, given proper formatting.</li>
+                    <li>Compactness – JSON data format doesn't use a complete markup structure, unlike XML.</li>
+                    <li>It's easy to analyze into logical syntactic components, especially in JavaScript.</li>
+                    <li>Countless JSON libraries are available for most programming languages.</li>
+                </ul>
+                <h2>Proper JSON Format</h2>
+                <p>Using JSON doesn't require any JavaScript knowledge, though having such would only improve your understanding of JSON. And though the knowledge of JavaScript isn't necessary, following specific rules is:</p>
+                <ul>
+                    <li>Data is in name/value pairs</li>
+                    <li>Data is separated by commas</li>
+                    <li>Objects are encapsulated within the opening and closing curly brackets</li>
+                    <li>An empty object can be represented by <code>{"{}"}</code></li>
+                    <li>Arrays are encapsulated within opening and closing square brackets</li>
+                    <li>An empty array can be represented by <code>[]</code></li>
+                    <li>A member is represented by a key-value pair, contained in double quotes</li>
+                    <li>Each member should have a unique key within an object structure</li>
+                    <li>The value of a member must be contained in double quotes, if it's a string</li>
+                    <li>Boolean values are represented using the <code>true</code> or <code>false</code> literals in lower case</li>
+                    <li>Number values are represented using double-precision floating-point format and shouldn't have leading zeroes</li>
+                    <li>"Offensive" characters in a string need to be escaped using the backslash character <code>\\</code></li>
+                    <li>Null values are represented by the <code>null</code> literal in lower case</li>
+                    <li>Dates, and similar object types, aren't adequately supported and should be converted to strings</li>
+                    <li>Each member of an object or array value must be followed by a comma, except for the last one</li>
+                    <li>The standard extension for the JSON file is <code>.json</code></li>
+                    <li>The mime type for JSON files is <code>application/json</code></li>
+                </ul>
+                <p>You can achieve proper JSON formatting by following these simple rules. However, if you're unsure about your code, we suggest using this JSONLint Validator and formatter.</p>
+                <h2>Why Use JSONLint Validator and Formatter?</h2>
+                <p>Programming can be challenging, as it requires enormous attention and excellent knowledge of the programming language, even as simple as JSON. Still, writing code is tricky, and finding an error in JSON code can be a challenging and time-consuming task.</p>
+                <p>The best way to find and correct errors while simultaneously saving time is to use an online tool such as JSONLint. JSONLint will check the validity of your JSON code, detect and point out line numbers of the code containing errors. It's an excellent way to correct errors without wasting hours finding a missing coma somewhere inside your code.</p>
+                <h2>How Does A JSONLint Validator Work?</h2>
+                <p>JSONLint is an online editor, validator, and formatting tool for JSON, which allows you to directly type your code, copy and paste it, or input a URL containing your code. It will validate your JSON content according to JS standards, informing you of every human-made error, which happens for a multitude of reasons – one of them being the lack of focus.</p>
+                <p>Using JSONLint, you can quickly find any errors that might've occurred, allowing you to focus more on the rest of your code than on a tiny error itself.</p>
+                <h2>Tips & Tricks</h2>
+                <ul>
+                    <li>You can use a URL and JSONLint will scrape it for JSON and parse it. Just structure the link like this, for example: <a href="/?url=/datasets/programming-languages.json"><code>/?url=/datasets/programming-languages.json</code></a></li>
+                    <li>You can provide JSON to lint in the URL if you link to JSONLint with the <code>json</code> parameter. For example: <a href="/?json=%7B%22hello%22:%20%22world%22%7D"><code>/?json=%7B%22hello%22:%20%22world%22%7D</code></a>.</li>
+                    <li>JSONLint can also be used as a JSON compressor/minifier. Just click on the "Compress" button above.</li>
+                </ul>
+                <h2>About JSONLint.com</h2>
+                <p>JSONLint was created by <a href="http://www.crockford.com/">Douglas Crockford</a> of JSON and JS Lint, and <a href="http://zaa.ch/">Zach Carter</a>, who built a <a href="https://github.com/zaach/jsonlint">pure JavaScript implementation</a>. You can download the <a href="https://www.github.com/circlecell/jsonlintdotcom">JSONLint source code on GitHub</a>.</p>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div id="bsa-zone_1605730077127-6_123456"></div>
+            </div>
+            <div class="py-10 px-6 bg-slate-100 dark:bg-slate-800">
+                <h2 class="text-base font-semibold mb-6 font-['MonoLisa'] tracking-tight dark:text-slate-400">
+                    <svg viewBox="0 0 640 512" height="24" class="mb-2 dark:text-slate-500"><path fill="currentColor" d="M416 31.94C416 21.75 408.1 0 384.1 0c-13.98 0-26.87 9.072-30.89 23.18l-128 448c-.8404 2.935-1.241 5.892-1.241 8.801C223.1 490.3 232 512 256 512c13.92 0 26.73-9.157 30.75-23.22l128-448C415.6 37.81 416 34.85 416 31.94zM176 143.1c0-18.28-14.95-32-32-32c-8.188 0-16.38 3.125-22.62 9.376l-112 112C3.125 239.6 0 247.8 0 255.1S3.125 272.4 9.375 278.6l112 112C127.6 396.9 135.8 399.1 144 399.1c17.05 0 32-13.73 32-32c0-8.188-3.125-16.38-9.375-22.63L77.25 255.1l89.38-89.38C172.9 160.3 176 152.2 176 143.1zM640 255.1c0-8.188-3.125-16.38-9.375-22.63l-112-112C512.4 115.1 504.2 111.1 496 111.1c-17.05 0-32 13.73-32 32c0 8.188 3.125 16.38 9.375 22.63l89.38 89.38l-89.38 89.38C467.1 351.6 464 359.8 464 367.1c0 18.28 14.95 32 32 32c8.188 0 16.38-3.125 22.62-9.376l112-112C636.9 272.4 640 264.2 640 255.1z"/></svg>
+                    More tools from JSONLint
+                </h2>
+                <ul class="tools grid grid-cols-1">
+                    <li><a href="/xml-to-json">XML to JSON</a></li>
+                    <li><a href="/json-stringify">JSON Stringify</a></li>
+                </ul>
+            </div>
+            <div class="py-10 px-6 bg-slate-100 dark:bg-slate-800">
+                <h2 class="text-base font-semibold mb-6 font-['MonoLisa'] tracking-tight dark:text-slate-400">
+                    <svg viewBox="0 0 640 512" height="24" class="mb-2 dark:text-slate-500"><path fill="currentColor" d="M416 31.94C416 21.75 408.1 0 384.1 0c-13.98 0-26.87 9.072-30.89 23.18l-128 448c-.8404 2.935-1.241 5.892-1.241 8.801C223.1 490.3 232 512 256 512c13.92 0 26.73-9.157 30.75-23.22l128-448C415.6 37.81 416 34.85 416 31.94zM176 143.1c0-18.28-14.95-32-32-32c-8.188 0-16.38 3.125-22.62 9.376l-112 112C3.125 239.6 0 247.8 0 255.1S3.125 272.4 9.375 278.6l112 112C127.6 396.9 135.8 399.1 144 399.1c17.05 0 32-13.73 32-32c0-8.188-3.125-16.38-9.375-22.63L77.25 255.1l89.38-89.38C172.9 160.3 176 152.2 176 143.1zM640 255.1c0-8.188-3.125-16.38-9.375-22.63l-112-112C512.4 115.1 504.2 111.1 496 111.1c-17.05 0-32 13.73-32 32c0 8.188 3.125 16.38 9.375 22.63l89.38 89.38l-89.38 89.38C467.1 351.6 464 359.8 464 367.1c0 18.28 14.95 32 32 32c8.188 0 16.38-3.125 22.62-9.376l112-112C636.9 272.4 640 264.2 640 255.1z"/></svg>
+                    Learn more about JSON
+                </h2>
+                <ul class="tools grid grid-cols-1">
+                    <li><a href="/mastering-json-format">Mastering JSON Format: Advantages, Best Practices and Comparison with Other Data Formats</a></li>
+                    <li><a href="/common-mistakes-in-json-and-how-to-avoid-them">Common JSON Mistakes and How to Avoid Them</a></li>
+                    <li><a href="/mastering-json-in-javascript">Mastering JSON in JavaScript: Comprehensive Examples and Techniques</a></li>
+                    <li><a href="/benefits-of-using-a-json-beautifier">Understanding the Benefits of Using a JSON Beautifier</a></li>
+                    <li><a href="/how-to-open-json-file">How to open JSON files</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/fold/foldcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/fold/foldgutter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/fold/brace-fold.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/dialog/dialog.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/searchcursor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/search.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/scroll/annotatescrollbar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/matchesonscrollbar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/jump-to-line.min.js"></script>
+<script src="https://unpkg.com/jsonlint-mod@1.7.6/lib/jsonlint.js"></script>
+<script>
+const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+    mode: { name: 'javascript', json: true },
+    lineNumbers: true,
+    foldGutter: true,
+    gutters: ['CodeMirror-linenumbers','CodeMirror-foldgutter'],
+    matchBrackets: true,
+    autoCloseBrackets: true,
+    search: true,
+    highlightSelectionMatches: {showToken: /\w/, annotateScrollbar: true}
+});
+let isPretty = false;
+let errorMarker = null;
+function customStringify(jsonObject, pretty){
+    let jsonString = pretty ? JSON.stringify(jsonObject, null, 4) : JSON.stringify(jsonObject);
+    jsonString = jsonString.replace(/\\u([\da-fA-F]{4})/g, '\\u$1').replace(/\\\//g, '/');
+    return jsonString;
+}
+function convertSpacesToTabs(str, spacesPerIndent){
+    const spaceGroup = ' '.repeat(spacesPerIndent);
+    return str.split('\n').map(line => line.replace(new RegExp(`^(${spaceGroup})+`, 'g'), match => '\\t'.repeat(match.length / spacesPerIndent))).join('\n');
+}
+function customCompress(jsonString){
+    let modifiedString = jsonString.replace(/\\u([\da-fA-F]{4})/g, 'UNICODE_$1').replace(/\\\//g, 'SLASH');
+    try {
+        let compressedJson = JSON.stringify(JSON.parse(modifiedString));
+        compressedJson = compressedJson.replace(/UNICODE_([\da-fA-F]{4})/g, '\\u$1').replace(/SLASH/g, '\\\/');
+        return compressedJson;
+    } catch (error) {
+        console.error('Error in customCompress:', error);
+        return jsonString;
+    }
+}
+function handleValidate(jsonToValidate){
+    const json = jsonToValidate !== undefined ? jsonToValidate : editor.getValue();
+    if(errorMarker){ errorMarker.clear(); errorMarker=null; }
+    try {
+        const parsed = jsonlint.parse(json);
+        const indentedJson = customStringify(parsed, true);
+        editor.setValue(indentedJson);
+        document.body.classList.add('valid');
+        document.body.classList.remove('invalid');
+        document.getElementById('result').innerHTML = '<div class="bg-green-100 border border-green-200 text-green-700 px-4 py-2 mt-4">JSON is valid!</div>';
+    } catch (e) {
+        document.body.classList.add('invalid');
+        document.body.classList.remove('valid');
+        const error = e.toString();
+        const match = error.match(/line (\d+)/);
+        if(match){
+            const lineNumber = parseInt(match[1],10) - 1;
+            errorMarker = editor.markText({line: lineNumber, ch: 0}, {line: lineNumber + 1, ch: 0}, {className: 'cm-error-highlight'});
+        }
+        document.getElementById('result').innerHTML = '<div class="bg-red-100 border border-red-200 text-red-700 px-4 py-2 mt-4"><span class="font-semibold block mb-2 pt-1">Invalid JSON!</span><pre class="py-4 text-xs border-t border-dashed border-red-300">'+error.replace(/</g,'&lt;')+'</pre></div>';
+    }
+}
+function handleFormatting(){
+    try {
+        let formattedJson;
+        const value = editor.getValue();
+        if(isPretty){
+            formattedJson = customStringify(jsonlint.parse(value), true);
+            formattedJson = convertSpacesToTabs(formattedJson,4);
+        } else {
+            formattedJson = customCompress(value);
+        }
+        editor.setValue(formattedJson);
+        isPretty = !isPretty;
+        document.getElementById('formatBtn').innerText = isPretty ? 'Prettify' : 'Compress';
+    } catch (error) {
+        document.getElementById('result').innerHTML = '<div class="bg-red-100 border border-red-200 text-red-700 px-4 py-2 mt-4">Failed to format JSON: '+error.message+'</div>';
+    }
+}
+function handleClear(){
+    editor.setValue('');
+    document.body.classList.remove('valid','invalid');
+    document.getElementById('result').innerHTML='';
+}
+async function handleCopy(){
+    try {
+        await navigator.clipboard.writeText(editor.getValue());
+        const btn = document.getElementById('copyBtn');
+        btn.innerHTML = '<svg width="24" height="24" class="px-1 py-1 text-green-500" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" stroke="currentColor" d="M480 128c0 8.188-3.125 16.38-9.375 22.62l-256 256C208.4 412.9 200.2 416 192 416s-16.38-3.125-22.62-9.375l-128-128C35.13 272.4 32 264.2 32 256c0-18.28 14.95-32 32-32c8.188 0 16.38 3.125 22.62 9.375L192 338.8l233.4-233.4C431.6 99.13 439.8 96 448 96C465.1 96 480 109.7 480 128z"/></svg>';
+        setTimeout(()=>{btn.innerHTML = '<svg width="24" height="24" class="px-1 py-1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" stroke="currentColor" d="M448 0H224C188.7 0 160 28.65 160 64v224c0 35.35 28.65 64 64 64h224c35.35 0 64-28.65 64-64V64C512 28.65 483.3 0 448 0zM464 288c0 8.822-7.178 16-16 16H224C215.2 304 208 296.8 208 288V64c0-8.822 7.178-16 16-16h224c8.822 0 16 7.178 16 16V288zM304 448c0 8.822-7.178 16-16 16H64c-8.822 0-16-7.178-16-16V224c0-8.822 7.178-16 16-16h64V160H64C28.65 160 0 188.7 0 224v224c0 35.35 28.65 64 64 64h224c35.35 0 64-28.65 64-64v-64h-48V448z"/></svg>';},2000);
+    } catch(e) {}
+}
+
+document.getElementById('validateBtn').addEventListener('click', () => handleValidate());
+document.getElementById('clearBtn').addEventListener('click', handleClear);
+document.getElementById('formatBtn').addEventListener('click', handleFormatting);
+document.getElementById('copyBtn').addEventListener('click', handleCopy);
+
+const params = new URLSearchParams(location.search);
+if(params.get('json')){
+    const decodedJson = decodeURIComponent(params.get('json'));
+    editor.setValue(decodedJson);
+    setTimeout(()=>handleValidate(decodedJson),0);
+} else if(params.get('url')){
+    fetch(decodeURIComponent(params.get('url')))
+        .then(response => response.json())
+        .then(data => {
+            const fetchedJson = JSON.stringify(data, null, 4);
+            editor.setValue(fetchedJson);
+            setTimeout(()=>handleValidate(fetchedJson),0);
+        })
+        .catch(error => {
+            document.getElementById('result').innerHTML = '<div class="bg-red-100 border border-red-200 text-red-700 px-4 py-2 mt-4">Failed to fetch JSON from URL: '+error.message+'</div>';
+        });
+}
+</script>
+</body>
+</html>
