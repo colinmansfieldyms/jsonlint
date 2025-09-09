@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>JSON Online Validator and Formatter - JSON Lint</title>
-<meta name="description" content="JSONLint is the free online validator, json formatter, and json beautifier tool for JSON, a lightweight data-interchange format. You can format json, validate json, with a quick and easy copy+paste.">
+<title>YMS JSONLint - JSON Online Validator and Formatter</title>
+<meta name="description" content="YMS JSONLint is the free online validator, json formatter, and json beautifier tool for JSON, a lightweight data-interchange format. You can format json, validate json, with a quick and easy copy+paste.">
 <script>
   tailwind.config = { darkMode: 'class' }
 </script>
@@ -22,28 +22,31 @@ body.valid svg.logo { color:#16a34a; }
 body.invalid svg.logo { color:#dc2626; }
 </style>
 </head>
-<body class="text-black dark:text-slate-300">
-<div class="flex-1 pt-6 max-w-8xl mx-auto dark:text-slate-300 px-8 lg:px-10">
-    <h1 class="text-base mb-4">To format and validate your JSON, just copy + paste it below:</h1>
+<body class="text-black">
+<header class="px-8 lg:px-10 pt-6">
+    <h1 class="text-2xl font-bold">YMS JSONLint</h1>
+</header>
+<div class="flex-1 pt-6 max-w-8xl mx-auto px-8 lg:px-10">
+    <h2 class="text-base mb-4">To format and validate your JSON, just copy + paste it below:</h2>
     <div class="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(932px,1fr),auto] xl:gap-12">
         <div class="min-w-4xl">
             <div id="jsonlint">
                 <div class="relative border border-slate-200 dark:border-slate-600">
                     <textarea id="editor"></textarea>
-                    <button id="copyBtn" class="absolute top-2 right-6 p-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 dark:bg-slate-500 dark:border-slate-400" title="Copy to clipboard">
+                    <button id="copyBtn" class="absolute top-2 right-6 p-1 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-black dark:bg-slate-500 dark:border-slate-400" title="Copy to clipboard">
                         <svg width="24" height="24" class="px-1 py-1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" stroke="currentColor" d="M448 0H224C188.7 0 160 28.65 160 64v224c0 35.35 28.65 64 64 64h224c35.35 0 64-28.65 64-64V64C512 28.65 483.3 0 448 0zM464 288c0 8.822-7.178 16-16 16H224C215.2 304 208 296.8 208 288V64c0-8.822 7.178-16 16-16h224c8.822 0 16 7.178 16 16V288zM304 448c0 8.822-7.178 16-16 16H64c-8.822 0-16-7.178-16-16V224c0-8.822 7.178-16 16-16h64V160H64C28.65 160 0 188.7 0 224v224c0 35.35 28.65 64 64 64h224c35.35 0 64-28.65 64-64v-64h-48V448z"/></svg>
                     </button>
                 </div>
                 <div>
                     <button id="validateBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-green-500 text-white bg-green-500 font-semibold hover:text-white hover:bg-green-500 hover:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Validate JSON</button>
-                    <button id="clearBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-slate-200 font-semibold text-slate-500 hover:text-white hover:bg-slate-500 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-slate-800">Clear</button>
-                    <button id="formatBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-slate-200 font-semibold text-slate-500 hover:text-white hover:bg-slate-500 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-slate-800">Compress</button>
+                    <button id="clearBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-slate-200 font-semibold text-black hover:text-white hover:bg-slate-500 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-slate-800">Clear</button>
+                    <button id="formatBtn" class="py-3 px-4 inline-flex mt-6 justify-center mr-4 items-center gap-2 border-2 border-slate-200 font-semibold text-black hover:text-white hover:bg-slate-500 hover:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-slate-800">Compress</button>
                     <div id="result"></div>
                 </div>
             </div>
             <div class="block mt-10 mb-20">
-                <h2 class="mt-10">About the JSONLint Editor</h2>
-                <p>JSONLint is a validator and reformatter for JSON, a lightweight data-interchange format. Copy and paste, directly type, or input a URL in the editor above and let JSONLint tidy and validate your messy JSON code.</p>
+                <h2 class="mt-10">How to update a rule in YMS</h2>
+                <p>To update a rule in YMS, first login to your desired tenant. Next, navigate to Settings -> Rules. Search for the desired rule, and click "Edit". Next, past the output of YMS JSONLint into the "Value" text box and click "Submit". Always update rules in Staging environments first and perform a complete test before updating them in Production.</p>
                 <h2>What Is JSON?</h2>
                 <p>JSON (pronounced as Jason), stands for "JavaScript Object Notation," is a human-readable and compact solution to represent a complex data structure and facilitate data interchange between systems. It's a widespread data format with a diverse range of applications enabled by its simplicity and semblance to readable text. As such, it's used by most but not all systems for communicating data.</p>
                 <h2>Why Use JSON?</h2>
@@ -91,31 +94,6 @@ body.invalid svg.logo { color:#dc2626; }
                 </ul>
                 <h2>About JSONLint.com</h2>
                 <p>JSONLint was created by <a href="http://www.crockford.com/">Douglas Crockford</a> of JSON and JS Lint, and <a href="http://zaa.ch/">Zach Carter</a>, who built a <a href="https://github.com/zaach/jsonlint">pure JavaScript implementation</a>. You can download the <a href="https://www.github.com/circlecell/jsonlintdotcom">JSONLint source code on GitHub</a>.</p>
-            </div>
-        </div>
-        <div>
-            <div class="py-10 px-6 bg-slate-100 dark:bg-slate-800">
-                <h2 class="text-base font-semibold mb-6 font-['MonoLisa'] tracking-tight dark:text-slate-400">
-                    <svg viewBox="0 0 640 512" height="24" class="mb-2 dark:text-slate-500"><path fill="currentColor" d="M416 31.94C416 21.75 408.1 0 384.1 0c-13.98 0-26.87 9.072-30.89 23.18l-128 448c-.8404 2.935-1.241 5.892-1.241 8.801C223.1 490.3 232 512 256 512c13.92 0 26.73-9.157 30.75-23.22l128-448C415.6 37.81 416 34.85 416 31.94zM176 143.1c0-18.28-14.95-32-32-32c-8.188 0-16.38 3.125-22.62 9.376l-112 112C3.125 239.6 0 247.8 0 255.1S3.125 272.4 9.375 278.6l112 112C127.6 396.9 135.8 399.1 144 399.1c17.05 0 32-13.73 32-32c0-8.188-3.125-16.38-9.375-22.63L77.25 255.1l89.38-89.38C172.9 160.3 176 152.2 176 143.1zM640 255.1c0-8.188-3.125-16.38-9.375-22.63l-112-112C512.4 115.1 504.2 111.1 496 111.1c-17.05 0-32 13.73-32 32c0 8.188 3.125 16.38 9.375 22.63l89.38 89.38l-89.38 89.38C467.1 351.6 464 359.8 464 367.1c0 18.28 14.95 32 32 32c8.188 0 16.38-3.125 22.62-9.376l112-112C636.9 272.4 640 264.2 640 255.1z"/></svg>
-                    More tools from JSONLint
-                </h2>
-                <ul class="tools grid grid-cols-1">
-                    <li><a href="/xml-to-json">XML to JSON</a></li>
-                    <li><a href="/json-stringify">JSON Stringify</a></li>
-                </ul>
-            </div>
-            <div class="py-10 px-6 bg-slate-100 dark:bg-slate-800">
-                <h2 class="text-base font-semibold mb-6 font-['MonoLisa'] tracking-tight dark:text-slate-400">
-                    <svg viewBox="0 0 640 512" height="24" class="mb-2 dark:text-slate-500"><path fill="currentColor" d="M416 31.94C416 21.75 408.1 0 384.1 0c-13.98 0-26.87 9.072-30.89 23.18l-128 448c-.8404 2.935-1.241 5.892-1.241 8.801C223.1 490.3 232 512 256 512c13.92 0 26.73-9.157 30.75-23.22l128-448C415.6 37.81 416 34.85 416 31.94zM176 143.1c0-18.28-14.95-32-32-32c-8.188 0-16.38 3.125-22.62 9.376l-112 112C3.125 239.6 0 247.8 0 255.1S3.125 272.4 9.375 278.6l112 112C127.6 396.9 135.8 399.1 144 399.1c17.05 0 32-13.73 32-32c0-8.188-3.125-16.38-9.375-22.63L77.25 255.1l89.38-89.38C172.9 160.3 176 152.2 176 143.1zM640 255.1c0-8.188-3.125-16.38-9.375-22.63l-112-112C512.4 115.1 504.2 111.1 496 111.1c-17.05 0-32 13.73-32 32c0 8.188 3.125 16.38 9.375 22.63l89.38 89.38l-89.38 89.38C467.1 351.6 464 359.8 464 367.1c0 18.28 14.95 32 32 32c8.188 0 16.38-3.125 22.62-9.376l112-112C636.9 272.4 640 264.2 640 255.1z"/></svg>
-                    Learn more about JSON
-                </h2>
-                <ul class="tools grid grid-cols-1">
-                    <li><a href="/mastering-json-format">Mastering JSON Format: Advantages, Best Practices and Comparison with Other Data Formats</a></li>
-                    <li><a href="/common-mistakes-in-json-and-how-to-avoid-them">Common JSON Mistakes and How to Avoid Them</a></li>
-                    <li><a href="/mastering-json-in-javascript">Mastering JSON in JavaScript: Comprehensive Examples and Techniques</a></li>
-                    <li><a href="/benefits-of-using-a-json-beautifier">Understanding the Benefits of Using a JSON Beautifier</a></li>
-                    <li><a href="/how-to-open-json-file">How to open JSON files</a></li>
-                </ul>
             </div>
         </div>
     </div>
