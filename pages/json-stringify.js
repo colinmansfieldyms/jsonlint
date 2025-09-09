@@ -16,21 +16,15 @@ export default function JSONStringifyPage() {
     
 	return (
 		<>
-			<div className="mt-8 max-w-8xl mx-auto sticky top-ad-container top-0 z-10 flex">
-				<div id="bsa-zone_1570746984891-3_123456"></div>
-			</div>
-			<div className="flex-1 pt-6 max-w-8xl mx-auto dark:text-slate-300 px-8 lg:px-10">
+                        <div className="flex-1 pt-6 max-w-8xl mx-auto dark:text-slate-300 px-8 lg:px-10">
 				
 				<h1 className="text-xl mb-2">Stringify JSON</h1>
 				<h2 className="text-base mb-6 font-normal">Paste your JSON below and click the button:</h2>
 				
 				<JSONStringifier />
 				
-				<div className="grid grid-cols-3 gap-4">
-					<div className="col-span-2">
-				
-						<div className="block mt-10 mb-20">
-							<h2>JSON Stringify Tool</h2>
+                                <div className="block mt-10 mb-20">
+                                        <h2>JSON Stringify Tool</h2>
 							<p>JSON-escaped text has several use cases, especially when working with data interchange. Here are some primary reasons and scenarios where JSON-escaped text is essential:</p>
 							<ol>
 								<li>
@@ -55,14 +49,7 @@ export default function JSONStringifyPage() {
 									<strong>Web APIs and Services:</strong> When designing web services, especially those that accept and return JSON, ensuring that content is properly escaped can prevent potential parsing errors, ensuring that clients can correctly interpret the data.
 								</li>
 							</ol>
-						</div>
-					</div>
-					<div className="mt-10 mb-20">
-						<div>
-							<div id="bsa-zone_1605730077127-6_123456"></div>
-						</div>
-					</div>
-				</div>
+                                                </div>
 			</div>
 		</>
 	)

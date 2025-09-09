@@ -16,21 +16,15 @@ export default function XMLtoJSONPage() {
     
 	return (
 		<>
-		<div className="mt-8 max-w-8xl mx-auto sticky top-ad-container top-0 z-10 flex">
-			<div id="bsa-zone_1570746984891-3_123456"></div>
-		</div>
-		<div className="flex-1 pt-6 max-w-8xl mx-auto dark:text-slate-300 px-8 lg:px-10">
+                <div className="flex-1 pt-6 max-w-8xl mx-auto dark:text-slate-300 px-8 lg:px-10">
 			
 			<h1 className="text-xl mb-2">Convert XML to JSON</h1>
 			<h2 className="text-base mb-6 font-normal">Copy + paste your XML below and click the button:</h2>
 			
 			<XMLtoJSON />
 			
-			<div className="grid grid-cols-3 gap-4">
-				<div className="col-span-2">
-			
-					<div className="block mt-10 mb-20">
-						<h2>XML to JSON Converter</h2>
+                        <div className="block mt-10 mb-20">
+                                <h2>XML to JSON Converter</h2>
 						<p>Welcome to the XML to JSON Conversion Tool, your one-stop solution for transforming XML data structures into readable and easy-to-manage JSON formats.</p>
 						
 						<h2>Why Convert from XML to JSON?</h2>
@@ -56,16 +50,7 @@ export default function XMLtoJSONPage() {
 						
 						<p>Whether you’re a developer looking to convert large XML datasets or just someone curious about transforming a few XML strings into JSON, this tool ensures a smooth and hassle-free experience. Dive in and make your data conversion simpler and faster!</p>
 						
-					</div>
-				</div>
-				<div className="mt-10 mb-20">
-					
-					<div>
-						<div id="bsa-zone_1605730077127-6_123456"></div>
-					</div>
-					
-				</div>
-			</div>
+                                          </div>
 		</div>
 		</>
 	)
