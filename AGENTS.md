@@ -11,7 +11,7 @@ This AGENTS guide describes the purpose of each folder and notable file in this 
 - **jsconfig.json** – JavaScript configuration for path aliases.
 - **tailwind.config.js** – Tailwind CSS configuration.
 - **postcss.config.js** – PostCSS setup used by Tailwind.
-- **vercel.json** – Deployment settings for Vercel, including redirect for `ads.txt`.
+- **vercel.json** – Deployment settings for Vercel.
 
 ## Directories
 ### `components/`
@@ -29,7 +29,6 @@ React context definitions.
 
 ### `hooks/`
 Custom React hooks.
-- **useAdBlockCheck.js** – Detects whether an ad blocker is present.
 - **useExtensionCheck.js** – Checks for the presence of the companion browser extension.
 
 ### `markdown/`
@@ -41,7 +40,7 @@ Markdown content rendered into site pages.
 - **json-stringify-guide.md** – Guide to JSON.stringify.
 - **mastering-json-format.md** – Overview of JSON formatting best practices.
 - **mastering-json-in-javascript.md** – Deep dive into JSON in JavaScript.
-- **privacy.md** – Privacy policy and advertising partner information.
+- **privacy.md** – Privacy policy information.
 - **datasets/** – Markdown descriptions of sample datasets.
   - **emoticons.md** – Details about the emoticons dataset.
   - **programming-languages.md** – Details about the programming languages dataset.
@@ -49,10 +48,10 @@ Markdown content rendered into site pages.
 
 ### `pages/`
 Next.js page components.
-- **_app.js** – Custom app wrapper; sets up layout and loads ad/analytics scripts.
-- **index.js** – Home page providing the JSONLint editor and ad placements.
-- **json-stringify.js** – Tool page for converting JSON to strings, includes ad placements.
-- **xml-to-json.js** – Tool page for converting XML to JSON, includes ad placements.
+- **_app.js** – Custom app wrapper; sets up layout.
+- **index.js** – Home page providing the JSONLint editor.
+- **json-stringify.js** – Tool page for converting JSON to strings.
+- **xml-to-json.js** – Tool page for converting XML to JSON.
 - **json-formatter.js** – Marketing page for the JSON Formatter Chrome extension.
 - **[...slug]/index.js** – Dynamic renderer for articles and dataset pages based on Markdown files.
 
@@ -67,15 +66,5 @@ Static assets served as-is.
 
 ### `styles/`
 Styling resources.
-- **globals.css** – Tailwind-based global styles and ad zone styling.
+- **globals.css** – Tailwind-based global styles.
 
-## Advertisements
-Code related to advertisements can be found in:
-- **hooks/useAdBlockCheck.js** – Ad blocker detection logic.
-- **pages/_app.js** – Loads BuySellAds scripts and Google Analytics.
-- **pages/index.js** – Defines BuySellAds ad zones on the home page.
-- **pages/json-stringify.js** – Contains ad zone placeholders for the JSON stringify tool.
-- **pages/xml-to-json.js** – Contains ad zone placeholders for the XML to JSON tool.
-- **styles/globals.css** – CSS rules for BuySellAds containers and native ad styling.
-- **vercel.json** – Redirects `/ads.txt` to the BuySellAds configuration file.
-- **markdown/privacy.md** – Describes advertising partners and policy information.
