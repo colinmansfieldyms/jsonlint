@@ -124,13 +124,9 @@ const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
 let isPretty = false;
 let errorMarker = null;
 function customStringify(jsonObject, pretty){
-    let jsonString = pretty ? JSON.stringify(jsonObject, null, 4) : JSON.stringify(jsonObject);
+    let jsonString = pretty ? JSON.stringify(jsonObject, null, '\t') : JSON.stringify(jsonObject);
     jsonString = jsonString.replace(/\\u([\da-fA-F]{4})/g, '\\u$1').replace(/\\\//g, '/');
     return jsonString;
-}
-function convertSpacesToTabs(str, spacesPerIndent){
-    const spaceGroup = ' '.repeat(spacesPerIndent);
-    return str.split('\n').map(line => line.replace(new RegExp(`^(${spaceGroup})+`, 'g'), match => '\\t'.repeat(match.length / spacesPerIndent))).join('\n');
 }
 function customCompress(jsonString){
     let modifiedString = jsonString.replace(/\\u([\da-fA-F]{4})/g, 'UNICODE_$1').replace(/\\\//g, 'SLASH');
@@ -179,7 +175,6 @@ function handleFormatting(){
         const value = editor.getValue();
         if(isPretty){
             formattedJson = customStringify(parseJSON(value), true);
-            formattedJson = convertSpacesToTabs(formattedJson,4);
         } else {
             formattedJson = customCompress(value);
         }
