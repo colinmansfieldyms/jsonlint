@@ -166,11 +166,19 @@ function customCompress(jsonString){
         return jsonString;
     }
 }
+function parseJSON(str){
+    if(typeof jsonlint === 'function'){
+        return jsonlint(str);
+    } else if(jsonlint && typeof jsonlint.parse === 'function'){
+        return jsonlint.parse(str);
+    }
+    throw new Error('jsonlint parser is unavailable');
+}
 function handleValidate(jsonToValidate){
     const json = jsonToValidate !== undefined ? jsonToValidate : editor.getValue();
     if(errorMarker){ errorMarker.clear(); errorMarker=null; }
     try {
-        const parsed = jsonlint.parse(json);
+        const parsed = parseJSON(json);
         const indentedJson = customStringify(parsed, true);
         editor.setValue(indentedJson);
         document.body.classList.add('valid');
@@ -193,7 +201,7 @@ function handleFormatting(){
         let formattedJson;
         const value = editor.getValue();
         if(isPretty){
-            formattedJson = customStringify(jsonlint.parse(value), true);
+            formattedJson = customStringify(parseJSON(value), true);
             formattedJson = convertSpacesToTabs(formattedJson,4);
         } else {
             formattedJson = customCompress(value);
