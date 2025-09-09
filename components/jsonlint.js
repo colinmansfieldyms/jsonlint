@@ -31,7 +31,15 @@ function customStringify(jsonObject, pretty) {
 
 function convertSpacesToTabs(str, spacesPerIndent) {
     const spaceGroup = ' '.repeat(spacesPerIndent)
-    return str.split('\n').map(line => line.replace(new RegExp(`^(${spaceGroup})+`, 'g'), match => '\t'.repeat(match.length / spacesPerIndent))).join('\n')
+    return str
+        .split('\n')
+        .map(line =>
+            line.replace(
+                new RegExp(`^(${spaceGroup})+`, 'g'),
+                match => String.fromCharCode(9).repeat(match.length / spacesPerIndent)
+            )
+        )
+        .join('\n')
 }
 
 function customCompress(jsonString) {
