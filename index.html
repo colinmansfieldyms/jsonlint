@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <title>JSON Online Validator and Formatter - JSON Lint</title>
 <meta name="description" content="JSONLint is the free online validator, json formatter, and json beautifier tool for JSON, a lightweight data-interchange format. You can format json, validate json, with a quick and easy copy+paste.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css">
+<script>
+  tailwind.config = { darkMode: 'class' }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/fold/foldgutter.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/dialog/dialog.min.css" />
@@ -132,7 +135,7 @@ body.invalid svg.logo { color:#dc2626; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/scroll/annotatescrollbar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/matchesonscrollbar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/search/jump-to-line.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsonlint-mod@1.7.6/dist/jsonlint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
 <script>
 const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     mode: { name: 'javascript', json: true },
