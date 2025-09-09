@@ -1,11 +1,13 @@
-# JSONLint.com
+# YMS JSONLint
 
 ## Overview
 
-[**JSONLint**](https://jsonlint.com) is your go-to online solution for JSON data validation and formatting. Whether you are debugging a system, or just need to ensure your JSON data is in the correct format, JSONLint is here to assist.
+[**YMS JSONLint**](https://colinmansfieldyms.github.io/jsonlint/) is the easiest way to validate JSON data and formatting before changing a rule in YMS. Whether you are debugging hand-written JSON, or just need to ensure your JSON data is in the correct format, YMS JSONLint is here to assist.
+
+ is your go-to online solution for JSON data validation and formatting. Whether you are debugging a system, or just need to ensure your JSON data is in the correct format, JSONLint is here to assist.
 
 > [!NOTE]
-> We also recommend checking out our [JSON Formatter Google Chrome plugin](https://chrome.google.com/webstore/detail/json-formatter/ondecobpcidaehknoegeapmclapnkgcl) ([GitHub Repo](https://github.com/circlecell/jsonformatter))
+> This site is orignally based on [**JSONLint**](https://jsonlint.com). All kudos to their team for this amazing tool.
 
 ## Features
 
@@ -15,14 +17,11 @@
 
 ## How to Use
 
-1. Visit [JSONLint.com](https://jsonlint.com/)
+1. Visit [YMS JSONLint](https://colinmansfieldyms.github.io/jsonlint/)
 2. Paste JSON data.
 3. Click on the 'Validate JSON' button.
-4. Review results. If there are issues, JSONLint will highlight them and suggest corrections.
+4. Review results. If there are issues, YMS JSONLint will highlight them and suggest corrections.
 
 ## Feedback & Contributions
 
-We are always looking to make JSONLint even better! If you have any suggestions, features requests, or found a bug, please:
-
-- [Create an Issue](https://github.com/circlecell/jsonlint/issues) or
-- [Submit a Pull Request](https://github.com/circlecell/jsonlint/pulls)
+Please reach out to Colin via slack for any recommendations or bug reports.
